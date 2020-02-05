@@ -3,11 +3,22 @@ FROM php:fpm
 WORKDIR /code
 
 RUN apt-get update && apt-get install -y \
+        git \
+        libxml2-dev \
+        libonig-dev \
         libfreetype6-dev \
         libjpeg62-turbo-dev \
         libpng-dev \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install -j$(nproc) gd
+    && docker-php-ext-install -j$(nproc) gd \
+    && docker-php-ext-install tokenizer \
+    && docker-php-ext-install bcmath \
+    && docker-php-ext-install ctype \
+    && docker-php-ext-install json \
+    && docker-php-ext-install mbstring \
+    && docker-php-ext-install pdo \
+    && docker-php-ext-install xml \
+    && php composer.phar install
 
 EXPOSE 9000
 
