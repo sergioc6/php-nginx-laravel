@@ -2,7 +2,9 @@ version: '3'
 
 services:
     web:
-        build: .
+        build:
+            context: "."
+            dockerfile: "Dockerfile-nginx"
         working_dir: /code
         ports:
             - "8080:80"
@@ -10,6 +12,9 @@ services:
             - ./:/code
         
     php:
+        build:
+            context: "."
+            dockerfile: "Dockerfile-php"
         image: php:fpm
         working_dir: /code
         volumes:
