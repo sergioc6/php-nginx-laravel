@@ -23,11 +23,7 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install zip \
     && docker-php-ext-install xml
 
-RUN php composer.phar install && php composer.phar dumpautoload
-
 RUN chmod -R 777 storage
-
-RUN php artisan key:generate
 
 EXPOSE 9000
 

@@ -6,8 +6,6 @@ COPY ./ /code
 
 WORKDIR /code
 
-RUN cp .env.example .env
-
 RUN chmod -R 777 /code/storage
 
 EXPOSE 80
