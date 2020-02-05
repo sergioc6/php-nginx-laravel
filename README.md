@@ -9,11 +9,21 @@ A continuación se detallan los pasos para configurar el proyecto localmente. La
 ### Instalación
 Clonar el repositorio
 ```sh
-$ git clone https://github.com/sergioc6/pictures-api.git
-$ cd pictures-api
+$ git clone https://github.com/sergioc6/php-nginx-laravel.git
+$ cd php-nginx-laravel
 ```
 
-Instalar las dependencias
+Construir los services:
+```sh
+$ docker-compose build
+```
+
+Levantar los servicios de php y nginx.
+```sh
+$ docker-compose up -d
+```
+
+Ingresar al service "php" e instalar las dependencias
 ```sh
 $ php composer.phar install
 $ php composer.phar dumpautoload
@@ -27,14 +37,4 @@ $ cp .env.example .env
 Generar la Key de la APP:
 ```sh
 $ php artisan key:generate
-```
-
-Construir los containers:
-```sh
-$ docker-compose build
-```
-
-Levantar los servicios de php y nginx.
-```sh
-$ docker-compose up -d
 ```
