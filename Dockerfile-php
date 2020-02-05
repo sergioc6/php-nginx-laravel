@@ -1,5 +1,7 @@
 FROM php:fpm
 
+COPY ./ /code
+
 WORKDIR /code
 
 RUN apt-get update && apt-get install -y \
@@ -17,8 +19,9 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install json \
     && docker-php-ext-install mbstring \
     && docker-php-ext-install pdo \
-    && docker-php-ext-install xml \
-    && php composer.phar install
+    && docker-php-ext-install xml
+
+RUN php composer.phar install && php composer.phar dumpautoload
 
 EXPOSE 9000
 
